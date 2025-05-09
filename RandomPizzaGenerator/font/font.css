@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Italian';
+    src: url('Italianno-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Semplicita';
+    src: url('Semplicita Medium.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Semplicita';
+    src: url('Semplicita Bold.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Semplicita';
+    src: url('Semplicita Light.otf') format('opentype');
+}

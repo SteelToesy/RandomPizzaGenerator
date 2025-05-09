@@ -1,0 +1,11 @@
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-lg);
+    padding: var(--padding-sm) 0;
+}
+
+nav img{
+    max-width: 5rem;
+}

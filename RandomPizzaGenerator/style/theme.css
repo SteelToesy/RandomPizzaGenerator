@@ -1,0 +1,32 @@
+:root{
+    --italy-green: #008C45;
+    --italy-white: #F4F5F0;
+    --italy-red: #CD212A;
+
+    --primary-color: ;
+    --secondary-color: ;
+    --tetriary-color: ;
+
+    --primary-bg-color: #F5E3C3;
+    --secondary-bg-color: ;
+
+    --primary-text-color: ;
+    --secondary-text-color: ;
+    --tetriary-text-color: ;
+
+    --gap-sm: 1rem;
+    --gap-md: 2rem;
+    --gap-lg: 3rem;
+    --gap-xl: 4rem;
+
+    --padding-sm: 1rem;
+    --padding-md: 2rem;
+    --padding-lg: 3rem;
+    --padding-xl: 4rem;
+
+    --border-radius-sm: .5rem;
+    --border-radius-md: 1rem;
+    --border-radius-lg: 1.5rem;
+    --border-radius-xl: 2rem;
+
+}
