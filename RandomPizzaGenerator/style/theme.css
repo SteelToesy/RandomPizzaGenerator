@@ -10,8 +10,8 @@
     --primary-bg-color: #F5E3C3;
     --secondary-bg-color: ;
 
-    --primary-text-color: ;
-    --secondary-text-color: ;
+    --primary-text-color: #000;
+    --secondary-text-color: #F4F5F0;
     --tetriary-text-color: ;
 
     --gap-sm: 1rem;
@@ -19,6 +19,8 @@
     --gap-lg: 3rem;
     --gap-xl: 4rem;
 
+    --padding-xxs: .25rem;
+    --padding-xs: .5rem;
     --padding-sm: 1rem;
     --padding-md: 2rem;
     --padding-lg: 3rem;

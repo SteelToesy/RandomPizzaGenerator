@@ -2,6 +2,16 @@ body{
     font-family: "Semplicita", sans-serif;
 }
 
+.italy-green{
+    color: var(--italy-green);
+}
+.italy-white{
+    color: var(--italy-white);
+}
+.italy-red{
+    color: var(--italy-red);
+}
+
 h1{
     font-family: "Italian", sans-serif;
     font-size: 5rem;
