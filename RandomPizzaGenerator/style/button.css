@@ -44,3 +44,40 @@
 .btn__primary:hover::before{
     left: 66%;
 }
+
+.btn__secondary{
+    background-color: var(--italy-white);
+    color: var(--primary-text-color)
+}
+
+.btn__secondary::after{
+    transition: .2s ease-in-out;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--italy-red);
+    top: 0;
+    left: 100%;
+    z-index: -2;
+}
+
+.btn__secondary:hover::after{
+    left: 66%;
+}
+
+.btn__secondary::before{
+    transition: .2s ease-in-out;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--italy-green);
+    top: 0;
+    right: 100%;
+    z-index: -1;
+}
+
+.btn__secondary:hover::before{
+    right: 66%;
+}
