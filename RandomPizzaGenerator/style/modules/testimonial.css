@@ -26,6 +26,7 @@
 @media(max-width: 768px){
     .testi{
         padding-top: 8rem;
+        padding-bottom: 4rem;
     }
 
     .testi img{

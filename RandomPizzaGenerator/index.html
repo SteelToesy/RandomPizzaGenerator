@@ -13,42 +13,45 @@
         <link rel="stylesheet" href="style/main.css">
         <link rel="stylesheet" href="style/button.css">
 
+        <link rel="stylesheet" href="style/modules/footer.css">
         <link rel="stylesheet" href="style/modules/navigation.css">
         <link rel="stylesheet" href="style/modules/header.css">
         <link rel="stylesheet" href="style/modules/usps.css">
         <link rel="stylesheet" href="style/modules/content-with-image.css">
         <link rel="stylesheet" href="style/modules/testimonial.css">
+        <link rel="stylesheet" href="style/modules/pizza-slider.css">
 
         <script defer src="js/main.js"></script>
+        <script defer src="js/pizza-slider.js"></script>
     </head>
     <body>
-        <main>
-            <nav>
-                <a href="">
-                    <span>Generator</span>
-                </a>
-                <a href="/">
-                    <img src="images/RandoPizzaLogo.png" alt="logo">
-                </a>
-                <a href="pages/ingredients.html">
-                    <span>ingredients</span>
-                </a>
-            </nav>
-            <header>
-                <div class="header__main container">
-                    <h1><span class="italy-green">The Great</span> <span class="italy-white"> Pizza</span> <span class="italy-red"> Generator</span></h1>
-                    <p>Endless pizza recipe possibilities, built from a random ingredient list.<br>For your pizza pleasure.</p>
-                    <div class="header__buttons">
-                        <a href="" class="btn btn__primary">
-                            <span>Generate my pizza</span>
-                        </a>
-                        <a href="" class="btn btn__secondary">
-                            <span>See the possibilities</span>
-                        </a>
-                    </div>
+        <nav>
+            <a href="">
+                <span>Generator</span>
+            </a>
+            <a href="/">
+                <img src="images/RandoPizzaLogo.png" alt="logo">
+            </a>
+            <a href="pages/ingredients.html">
+                <span>ingredients</span>
+            </a>
+        </nav>
+        <header>
+            <div class="header__main container">
+                <h1><span class="italy-green">The Great</span> <span class="italy-white"> Pizza</span> <span class="italy-red"> Generator</span></h1>
+                <p>Endless pizza recipe possibilities, built from a random ingredient list.<br>For your pizza pleasure.</p>
+                <div class="header__buttons">
+                    <a href="" class="btn btn__primary">
+                        <span>Generate My Pizza</span>
+                    </a>
+                    <a href="" class="btn btn__secondary">
+                        <span>See The Possibilities</span>
+                    </a>
                 </div>
-                <img src="images/pizza-banner.png" alt="banner" class="header__background"></img>
-            </header>
+            </div>
+            <img src="images/pizza-banner.png" alt="banner" class="header__background"></img>
+        </header>
+        <main>
             <section class="container usps">
                 <h2>Upgrade Your Meals</h2>
                 <ul class="usps__wrapper">
@@ -76,11 +79,14 @@
                     <p>From classic favorites like pepperoni and mozzarella to adventurous picks like truffle oil, figs, and gorgonzola. we’ve got ingredients for every craving. Whether you’re into veggie-packed creations, meat-lover feasts, or unexpected flavor combos, there’s something for everyone.</p>
                     <div class="header__buttons">
                         <a href="" class="btn btn__primary">
-                            <span>See Our Ingredients!</span>
+                            <span>Generate My Pizza</span>
+                        </a>
+                        <a href="" class="btn btn__secondary">
+                            <span>See The Possibilities</span>
                         </a>
                     </div>
                 </div>
-                <img src="https://placehold.co/600x600/png" alt="">
+                <img src="images/whole-pizza.png" alt="">
             </section>
             <!--Testimonial-->
             <section class="container testi">
@@ -92,6 +98,39 @@
                     <figcaption>— Papa Louie, legendary pizza maker and hero of the Pepperoni Wars</figcaption>
                 </figure>
             </section>
+            <!--Content with Image-->
+            <section class="container cowiim inverted">
+                <div class="cowiim__content">
+                    <h2>Looking for pizza ideas that go beyond pepperoni?</h2>
+                    <p>Dive into our collection of creative, mouth-watering pizza recipes randomly generated to inspire your next slice. From sweet and savory combos to veggie-loaded creations, there's a flavor waiting to be discovered.</p>
+                    <div class="header__buttons">
+                        <a href="" class="btn btn__primary">
+                            <span>Generate My Pizza</span>
+                        </a>
+                        <a href="" class="btn btn__secondary">
+                            <span>See Some Recipes</span>
+                        </a>
+                    </div>
+                </div>
+                <img src="images/nine-pizzas.png" alt="">
+            </section>
+            <section class="pizza-slider">
+                <h2>ask if styling libraries are allowed</h2>
+            </section>
         </main>
+        <footer>
+            <a href="/">
+                <img src="images/RandoPizzaLogo.png" alt="logo">
+            </a>
+            <div class="footer__effect-wrapper-left"><span class="left"></span></div>
+            <div class="footer__effect-wrapper-right"><span class="right"></span></div>
+            <a href="">
+                <span>Generator</span>
+            </a>
+            <a href="pages/ingredients.html">
+                <span>ingredients</span>
+            </a>
+            <span>&copy; javascript year auto increment Dion Vos</span>
+        </footer>
     </body>
 </html>
