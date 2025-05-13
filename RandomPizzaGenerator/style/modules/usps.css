@@ -1,0 +1,34 @@
+.usps{
+    padding: var(--padding-lg) 0;
+}
+
+.usps h2{
+    margin-bottom: var(--gap-sm)
+}
+
+.usps__wrapper{
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gap-lg);
+}
+
+.usp__item{
+    background: var(--tetriary-bg-color, #fff);
+    padding: var(--padding-sm) var(--padding-md);
+    border-radius: var(--border-radius-md);
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+}
+
+.usp__item p{
+    padding-top: var(--padding-sm);
+    max-width: 300px
+}
+
+.usp__item img{
+    max-height: 100px;
+    position: absolute;
+    right: -20px;
+    top: -28px;
+}

@@ -3,13 +3,15 @@
     --italy-white: #F4F5F0;
     --italy-red: #CD212A;
 
-    --primary-color: ;
-    --secondary-color: ;
-    --tetriary-color: ;
+    --primary-color: #008C45;
+    --secondary-color: #F4F5F0;
+    --tetriary-color: #CD212A;
 
     --primary-bg-color: #F5E3C3;
-    --secondary-bg-color: ;
+    --secondary-bg-color: #D9B88E;
+    --tetriary-bg-color: #D64321;
 
+    --header-color: #3B2F2F;
     --primary-text-color: #000;
     --secondary-text-color: #F4F5F0;
     --tetriary-text-color: ;

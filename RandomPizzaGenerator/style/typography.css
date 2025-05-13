@@ -12,7 +12,33 @@ body{
     color: var(--italy-red);
 }
 
-h1{
+.italy-font{
     font-family: "Italian", sans-serif;
+}
+
+h1, h2{
+    font-family: "Italian", sans-serif;
+    color: var(--header-color);
+}
+
+h1, .h1{
     font-size: 5rem;
+    color: var(--header-color);
+}
+
+h2, .h2{
+    font-size: 4.5rem;
+    color: var(--header-color);
+}
+
+h3, .h3{
+    font-size: 3.5rem;
+}
+
+h4, .h4{
+    font-size: 2.5rem;
+}
+
+h5, .h5{
+    font-size: 1.5rem;
 }
