@@ -9,3 +9,9 @@ nav{
 nav img{
     max-width: 4rem;
 }
+
+@media(max-width: 425px){
+    nav{
+        gap: var(--gap-sm);
+    }
+}
