@@ -1,0 +1,61 @@
+.testi{
+    padding-top: 14rem;
+    padding-bottom: var(--padding-xxl);
+}
+
+.testi__wrapper{
+    background-color: var(--tetriary-bg-color);
+    position: relative;
+    padding: var(--padding-md);
+    border-radius: var(--border-radius-lg);
+    margin-left: var(--padding-xl)
+}
+
+.testi blockquote,
+.testi figcaption{
+    margin-left: 4rem;
+}
+
+.testi img{
+    position: absolute;
+    bottom: -3rem;
+    left: -6rem;
+    height: 500px;
+}
+
+@media(max-width: 768px){
+    .testi{
+        padding-top: 8rem;
+    }
+
+    .testi img{
+        top: -6rem;
+        left: -4rem;
+        height: 300px;
+    }
+
+    .testi blockquote,
+    .testi figcaption{
+        margin-left: 2rem;
+    }
+}
+
+@media(max-width: 425px){
+    .testi{
+        padding-top: var(--padding-xl);
+    }
+    .testi img{
+        top: -3rem;
+        left: -2.5rem;
+        height: 200px;
+    }
+
+    .testi blockquote,
+    .testi figcaption{
+        margin-left: 2rem;
+    }
+
+    .testi__wrapper{
+        margin-left: var(--padding-md)
+    }
+}

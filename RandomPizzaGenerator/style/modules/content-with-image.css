@@ -14,4 +14,20 @@
 
 .cowiim img{
     border-radius: var(--border-radius-md);
+    height: auto;
+    flex-shrink: 1;
+    max-width: 600px;
+    width: 50%;
+    object-fit: cover;
+}
+
+@media(max-width: 768px){
+    .cowiim{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cowiim img{
+        width: 100%;
+    }
 }
