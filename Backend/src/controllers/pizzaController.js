@@ -24,7 +24,6 @@ export const createPizza = async (req, res) => {
   }
 };
 
-
 export const getPizzaById = async (req, res) => {
   const { id } = req.params;
   const result = await pool.query('SELECT * FROM pizza WHERE id = $1', [id]);
