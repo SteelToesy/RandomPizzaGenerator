@@ -1,7 +1,7 @@
 footer{
     padding-top: 10rem;
     padding-bottom: var(--padding-xs);
-    margin-top: var(--padding-lg);
+    margin-top: 5rem;
     background-color: var(--tetriary-bg-color);
     display: flex;
     flex-direction: column;
