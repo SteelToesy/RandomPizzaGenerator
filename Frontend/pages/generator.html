@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="../style/main.css">
         <link rel="stylesheet" href="../style/button.css">
 
+        <link rel="stylesheet" href="../style/modules/generator.css">
         <link rel="stylesheet" href="../style/modules/footer.css">
         <link rel="stylesheet" href="../style/modules/navigation.css">
         <link rel="stylesheet" href="../style/modules/header.css">
@@ -33,22 +34,42 @@
             </a>
         </nav>
         <header>
-            <div class="header__main container">
+            <div class="header__main container" style="align-items: center; text-align: center;">
                 <h1><span class="italy-green">The Great</span> <span class="italy-white"> Pizza</span> <span class="italy-red"> Generator</span></h1>
-                <p>Endless pizza recipe possibilities, built from a random ingredient list.<br>For your pizza pleasure.</p>
-                <div class="header__buttons">
-                    <a href="" class="btn btn__primary">
-                        <span>Generate My Pizza</span>
-                    </a>
-                    <a href="" class="btn btn__secondary">
-                        <span>See The Possibilities</span>
-                    </a>
-                </div>
             </div>
             <img src="../images/pizza-banner.png" alt="banner" class="header__background"></img>
         </header>
         <main>
             <!--Generator-->
+            <section class="generator container">
+                <div class="generator__filters">
+                    <h2>Topping filters</h2>
+                    <ul class="generator__filters-wrapper">
+                        <li class="generator__filters-category">
+                            <h3>category</h3>
+                            <ul>
+                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
+                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
+                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
+                            </ul>
+                        </li>
+                        <li class="generator__filters-category">
+                            <h3>category</h3>
+                            <ul>
+                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
+                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
+                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="generator__submission">
+                    <div class="generator__pizza">
+                        <img class="generator__pizza-bottom" src="../images/BlankPizza.png" alt="Blank Pizza">
+                    </div>
+                    <button class="generator__submission-button btn btn__primary">Generate My Pizza!</button>
+                </div>
+            </section> 
         </main>
         <footer>
             <a href="/">
