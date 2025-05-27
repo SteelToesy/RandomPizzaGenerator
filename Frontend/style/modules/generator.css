@@ -1,26 +1,63 @@
 .generator{
-    padding: var(--padding-lg) 0;
+    padding-top: var(--padding-lg);
+    padding-bottom: var(--padding-lg);
     display: flex;
     gap: var(--gap-xl);
-    justify-content: space-between;
+    justify-content: center;
+}
+
+.generator__filters-buttons{
+    display: flex;
+    gap: var(--gap-xs);
+    width: 100%;
+}
+
+.generator__filters-buttons button{
+    width: 100%;
 }
 
 .generator__filters{
     max-width: 400px;
     width: 100%;
+    background: var(--secondary-bg-color);
+    padding: var(--padding-sm);
+    border-radius: var(--border-radius-md);
+}
+
+.generator__filters h2{
+    padding-bottom: var(--padding-sm);
+    text-align: center;
+}
+
+.generator__filters-category h3{
+    font-size: 2rem;
+    background-color: var(--tetriary-bg-color);
+    line-height: 2rem;
+    padding: 0 0 var(--padding-xs) var(--padding-md);
+    border-radius: var(--border-radius-md);
+    margin-top: var(--gap-sm);
 }
 
 .generator__filters-item{
     position: relative;
+    border-bottom: 2px solid var(--tetriary-bg-color);
+    padding: var(--padding-xs);
 }
 
 /* pizzas/submission section */
 
 .generator__submission{
+    position: relative;
+}
+
+.generator__sticky{
     display: flex;
     flex-direction: column;
     gap: var(--gap-lg);
     align-items: center;
+    position: sticky;
+    top: var(--padding-lg);
+    overflow: hidden;
 }
 
 .generator__pizza{
@@ -39,5 +76,12 @@
     }
     to {
     transform: rotate(360deg);
+    }
+}
+
+@media(max-width: 1024px) {
+    .generator{
+        gap: var(--gap-sm);
+        justify-content: space-between;
     }
 }
