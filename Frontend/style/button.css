@@ -12,7 +12,12 @@
 
 .btn__primary{
     background-color: var(--italy-green);
-    color: var(--primary-text-color)
+    color: var(--secondary-text-color);
+    transition: .2s;
+}
+
+.btn__primary:hover{
+    color: var(--primary-text-color);
 }
 
 .btn__primary::after{
@@ -85,6 +90,50 @@
 }
 
 .btn__secondary:hover::before{
+    right: 66%;
+}
+
+.btn__tetriary{
+    background-color: var(--italy-red);
+    color: var(--secondary-text-color);
+    transition: .2s;
+}
+
+.btn__tetriary:hover{
+    color: var(--primary-text-color)
+}
+
+.btn__tetriary::after{
+    transition: .2s ease-in-out;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 200%;
+    background-color: var(--italy-white);
+    bottom: 0;
+    right: 110%;
+    z-index: -2;
+    transform: rotate(20deg);
+}
+
+.btn__tetriary:hover::after{
+    right: 33%;
+}
+
+.btn__tetriary::before{
+    transition: .2s ease-in-out;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 200%;
+    background-color: var(--italy-green);
+    bottom: 0;
+    right: 110%;
+    z-index: -1;
+    transform: rotate(20deg);
+}
+
+.btn__tetriary:hover::before{
     right: 66%;
 }
 
