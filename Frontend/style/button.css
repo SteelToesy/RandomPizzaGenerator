@@ -153,6 +153,7 @@ label {
     padding-left: 30px;
     cursor: pointer;
     font-size: 16px;
+    pointer-events: none;
 }
 
 /* The box before the label */

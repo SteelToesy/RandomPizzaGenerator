@@ -1,40 +1,62 @@
-import pool from '../db.js';
+import db from '../db/db.js';
 
-export const getAllRecipes = async (req, res) => {
-  const result = await pool.query('SELECT * FROM recipe');
-  res.json(result.rows);
+// GET all recipes
+export const getAllRecipes = (req, res) => {
+  const stmt = db.prepare('SELECT * FROM recipe');
+  const recipes = stmt.all();
+  res.json(recipes);
 };
 
-export const getRecipeById = async (req, res) => {
-  const result = await pool.query('SELECT * FROM recipe WHERE id = $1', [req.params.id]);
-  result.rows.length
-    ? res.json(result.rows[0])
-    : res.status(404).json({ message: 'Recipe not found' });
+// GET recipe by ID
+export const getRecipeById = (req, res) => {
+  const stmt = db.prepare('SELECT * FROM recipe WHERE id = ?');
+  const recipe = stmt.get(req.params.id);
+
+  if (recipe) {
+    res.json(recipe);
+  } else {
+    res.status(404).json({ message: 'Recipe not found' });
+  }
 };
 
-export const createRecipe = async (req, res) => {
+// POST create recipe
+export const createRecipe = (req, res) => {
   const { pizza_id } = req.body;
-  if (!pizza_id) return res.status(400).json({ message: 'pizza_id is required' });
 
-  const result = await pool.query(
-    'INSERT INTO recipe (pizza_id) VALUES ($1) RETURNING *',
-    [pizza_id]
-  );
-  res.status(201).json(result.rows[0]);
+  if (!pizza_id) {
+    return res.status(400).json({ message: 'pizza_id is required' });
+  }
+
+  try {
+    const insertStmt = db.prepare('INSERT INTO recipe (pizza_id) VALUES (?)');
+    const info = insertStmt.run(pizza_id);
+
+    const newRecipe = db.prepare('SELECT * FROM recipe WHERE id = ?').get(info.lastInsertRowid);
+    res.status(201).json(newRecipe);
+  } catch (error) {
+    console.error('Error creating recipe:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 };
 
-export const updateRecipe = async (req, res) => {
+// PATCH/PUT update recipe
+export const updateRecipe = (req, res) => {
   const { pizza_id } = req.body;
-  const result = await pool.query(
-    'UPDATE recipe SET pizza_id = $1 WHERE id = $2 RETURNING *',
-    [pizza_id, req.params.id]
-  );
-  result.rows.length
-    ? res.json(result.rows[0])
-    : res.status(404).json({ message: 'Recipe not found' });
+
+  const updateStmt = db.prepare('UPDATE recipe SET pizza_id = ? WHERE id = ?');
+  const info = updateStmt.run(pizza_id, req.params.id);
+
+  if (info.changes > 0) {
+    const updatedRecipe = db.prepare('SELECT * FROM recipe WHERE id = ?').get(req.params.id);
+    res.json(updatedRecipe);
+  } else {
+    res.status(404).json({ message: 'Recipe not found' });
+  }
 };
 
-export const deleteRecipe = async (req, res) => {
-  await pool.query('DELETE FROM recipe WHERE id = $1', [req.params.id]);
+// DELETE recipe
+export const deleteRecipe = (req, res) => {
+  const stmt = db.prepare('DELETE FROM recipe WHERE id = ?');
+  stmt.run(req.params.id);
   res.status(204).send();
 };

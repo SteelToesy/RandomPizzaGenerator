@@ -1,42 +1,66 @@
-import pool from '../db.js';
+import db from '../db/db.js';
 
-export const getAllReviews = async (req, res) => {
-  const result = await pool.query('SELECT * FROM review');
-  res.json(result.rows);
+// GET all reviews
+export const getAllReviews = (req, res) => {
+  const stmt = db.prepare('SELECT * FROM review');
+  const reviews = stmt.all();
+  res.json(reviews);
 };
 
-export const getReviewById = async (req, res) => {
-  const result = await pool.query('SELECT * FROM review WHERE id = $1', [req.params.id]);
-  result.rows.length
-    ? res.json(result.rows[0])
-    : res.status(404).json({ message: 'Review not found' });
+// GET review by ID
+export const getReviewById = (req, res) => {
+  const stmt = db.prepare('SELECT * FROM review WHERE id = ?');
+  const review = stmt.get(req.params.id);
+
+  if (review) {
+    res.json(review);
+  } else {
+    res.status(404).json({ message: 'Review not found' });
+  }
 };
 
-export const createReview = async (req, res) => {
+// POST create review
+export const createReview = (req, res) => {
   const { pizza_id, rating, comment } = req.body;
+
   if (!pizza_id || !rating) {
     return res.status(400).json({ message: 'pizza_id and rating are required' });
   }
 
-  const result = await pool.query(
-    'INSERT INTO review (pizza_id, rating, comment) VALUES ($1, $2, $3) RETURNING *',
-    [pizza_id, rating, comment]
-  );
-  res.status(201).json(result.rows[0]);
+  try {
+    const insertStmt = db.prepare(
+      'INSERT INTO review (pizza_id, rating, comment) VALUES (?, ?, ?)'
+    );
+    const info = insertStmt.run(pizza_id, rating, comment);
+
+    const newReview = db.prepare('SELECT * FROM review WHERE id = ?').get(info.lastInsertRowid);
+    res.status(201).json(newReview);
+  } catch (error) {
+    console.error('Error creating review:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 };
 
-export const updateReview = async (req, res) => {
+// PATCH/PUT update review
+export const updateReview = (req, res) => {
   const { rating, comment } = req.body;
-  const result = await pool.query(
-    'UPDATE review SET rating = $1, comment = $2 WHERE id = $3 RETURNING *',
-    [rating, comment, req.params.id]
+
+  const updateStmt = db.prepare(
+    'UPDATE review SET rating = ?, comment = ? WHERE id = ?'
   );
-  result.rows.length
-    ? res.json(result.rows[0])
-    : res.status(404).json({ message: 'Review not found' });
+  const info = updateStmt.run(rating, comment, req.params.id);
+
+  if (info.changes > 0) {
+    const updatedReview = db.prepare('SELECT * FROM review WHERE id = ?').get(req.params.id);
+    res.json(updatedReview);
+  } else {
+    res.status(404).json({ message: 'Review not found' });
+  }
 };
 
-export const deleteReview = async (req, res) => {
-  await pool.query('DELETE FROM review WHERE id = $1', [req.params.id]);
+// DELETE review
+export const deleteReview = (req, res) => {
+  const stmt = db.prepare('DELETE FROM review WHERE id = ?');
+  stmt.run(req.params.id);
   res.status(204).send();
 };

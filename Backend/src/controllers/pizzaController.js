@@ -1,11 +1,27 @@
-import pool from '../db.js';
+import db from '../db/db.js';
 
-export const getAllPizzas = async (req, res) => {
-  const result = await pool.query('SELECT * FROM pizza');
-  res.json(result.rows);
+// GET all pizzas
+export const getAllPizzas = (req, res) => {
+  const stmt = db.prepare('SELECT * FROM pizza');
+  const pizzas = stmt.all();
+  res.json(pizzas);
 };
 
-export const createPizza = async (req, res) => {
+// GET pizza by ID
+export const getPizzaById = (req, res) => {
+  const { id } = req.params;
+  const stmt = db.prepare('SELECT * FROM pizza WHERE id = ?');
+  const pizza = stmt.get(id);
+
+  if (pizza) {
+    res.json(pizza);
+  } else {
+    res.status(404).json({ message: 'Pizza not found' });
+  }
+};
+
+// POST create new pizza
+export const createPizza = (req, res) => {
   const { name } = req.body;
 
   if (!name) {
@@ -13,39 +29,37 @@ export const createPizza = async (req, res) => {
   }
 
   try {
-    const result = await pool.query(
-      'INSERT INTO pizza (name) VALUES ($1) RETURNING *',
-      [name]
-    );
-    res.status(201).json(result.rows[0]);
+    const insertStmt = db.prepare('INSERT INTO pizza (name) VALUES (?)');
+    const info = insertStmt.run(name);
+
+    const newPizza = db.prepare('SELECT * FROM pizza WHERE id = ?').get(info.lastInsertRowid);
+    res.status(201).json(newPizza);
   } catch (error) {
     console.error('Error creating pizza:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };
 
-export const getPizzaById = async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('SELECT * FROM pizza WHERE id = $1', [id]);
-  result.rows.length
-    ? res.json(result.rows[0])
-    : res.status(404).json({ message: 'Pizza not found' });
-};
-
-export const updatePizza = async (req, res) => {
+// PATCH/PUT update pizza
+export const updatePizza = (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
-  const result = await pool.query(
-    'UPDATE pizza SET name = $1 WHERE id = $2 RETURNING *',
-    [name, id]
-  );
-  result.rows.length
-    ? res.json(result.rows[0])
-    : res.status(404).json({ message: 'Pizza not found' });
+
+  const updateStmt = db.prepare('UPDATE pizza SET name = ? WHERE id = ?');
+  const info = updateStmt.run(name, id);
+
+  if (info.changes > 0) {
+    const updatedPizza = db.prepare('SELECT * FROM pizza WHERE id = ?').get(id);
+    res.json(updatedPizza);
+  } else {
+    res.status(404).json({ message: 'Pizza not found' });
+  }
 };
 
-export const deletePizza = async (req, res) => {
+// DELETE pizza
+export const deletePizza = (req, res) => {
   const { id } = req.params;
-  await pool.query('DELETE FROM pizza WHERE id = $1', [id]);
+  const deleteStmt = db.prepare('DELETE FROM pizza WHERE id = ?');
+  deleteStmt.run(id);
   res.status(204).send(); // No Content
 };

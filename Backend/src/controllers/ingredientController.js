@@ -1,40 +1,54 @@
-import pool from '../db.js';
+import db from '../db/db.js';
 
-export const getAllIngredients = async (req, res) => {
-  const result = await pool.query('SELECT * FROM ingredient');
-  res.json(result.rows);
+// GET all ingredients
+export const getAllIngredients = (req, res) => {
+  const stmt = db.prepare('SELECT * FROM ingredient');
+  const ingredients = stmt.all();
+  res.json(ingredients);
 };
 
-export const getIngredientById = async (req, res) => {
-  const result = await pool.query('SELECT * FROM ingredient WHERE id = $1', [req.params.id]);
-  result.rows.length
-    ? res.json(result.rows[0])
-    : res.status(404).json({ message: 'Ingredient not found' });
+// GET one ingredient by ID
+export const getIngredientById = (req, res) => {
+  const stmt = db.prepare('SELECT * FROM ingredient WHERE id = ?');
+  const ingredient = stmt.get(req.params.id);
+
+  if (ingredient) {
+    res.json(ingredient);
+  } else {
+    res.status(404).json({ message: 'Ingredient not found' });
+  }
 };
 
-export const createIngredient = async (req, res) => {
+// POST create ingredient
+export const createIngredient = (req, res) => {
   const { name } = req.body;
   if (!name) return res.status(400).json({ message: 'Ingredient name is required' });
 
-  const result = await pool.query(
-    'INSERT INTO ingredient (name) VALUES ($1) RETURNING *',
-    [name]
-  );
-  res.status(201).json(result.rows[0]);
+  const stmt = db.prepare('INSERT INTO ingredient (name) VALUES (?)');
+  const info = stmt.run(name);
+
+  const newIngredient = db.prepare('SELECT * FROM ingredient WHERE id = ?').get(info.lastInsertRowid);
+  res.status(201).json(newIngredient);
 };
 
-export const updateIngredient = async (req, res) => {
+// PATCH/PUT update ingredient
+export const updateIngredient = (req, res) => {
   const { name } = req.body;
-  const result = await pool.query(
-    'UPDATE ingredient SET name = $1 WHERE id = $2 RETURNING *',
-    [name, req.params.id]
-  );
-  result.rows.length
-    ? res.json(result.rows[0])
-    : res.status(404).json({ message: 'Ingredient not found' });
+
+  const stmt = db.prepare('UPDATE ingredient SET name = ? WHERE id = ?');
+  const info = stmt.run(name, req.params.id);
+
+  if (info.changes > 0) {
+    const updated = db.prepare('SELECT * FROM ingredient WHERE id = ?').get(req.params.id);
+    res.json(updated);
+  } else {
+    res.status(404).json({ message: 'Ingredient not found' });
+  }
 };
 
-export const deleteIngredient = async (req, res) => {
-  await pool.query('DELETE FROM ingredient WHERE id = $1', [req.params.id]);
+// DELETE ingredient
+export const deleteIngredient = (req, res) => {
+  const stmt = db.prepare('DELETE FROM ingredient WHERE id = ?');
+  stmt.run(req.params.id);
   res.status(204).send();
 };
