@@ -52,3 +52,19 @@ export const deleteIngredient = (req, res) => {
   stmt.run(req.params.id);
   res.status(204).send();
 };
+
+// GET ingredients grouped by category
+export const getIngredientsGroupedByCategory = (req, res) => {
+  const rows = db.prepare('SELECT * FROM ingredient').all();
+
+  const grouped = rows.reduce((acc, ingredient) => {
+    const category = ingredient.category || 'Uncategorized';
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(ingredient.name);
+    return acc;
+  }, {});
+
+  res.json(grouped);
+};
