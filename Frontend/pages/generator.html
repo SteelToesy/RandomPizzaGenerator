@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="../style/layout.css">
         <link rel="stylesheet" href="../style/main.css">
         <link rel="stylesheet" href="../style/button.css">
+        <link rel="stylesheet" href="../style/form.css">
+
 
         <link rel="stylesheet" href="../style/modules/generator.css">
         <link rel="stylesheet" href="../style/modules/footer.css">
@@ -46,51 +48,15 @@
                 <div class="generator__filters">
                     <h2>Topping filters</h2>
                     <div class="generator__filters-buttons">
-                        <button class="btn btn__primary">Reset</button>
-                        <button class="btn btn__secondary">All</button>
-                        <button class="btn btn__tetriary">Random</button>
+                        <button class="btn btn__primary" id="uncheck_all">Reset</button>
+                        <button class="btn btn__secondary" id="check_all">All</button>
+                        <button class="btn btn__tetriary" id="check_random">Random</button>
                     </div>
+                    <label for="topping_amount">
+                        Number of toppings
+                    </label>
+                    <input type="number" class="generator__filters-topping-amount" id="topping_amount" name="topping_amount">
                     <ul class="generator__filters-wrapper">
-                        <li class="generator__filters-category">
-                            <h3>category</h3>
-                            <ul>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                            </ul>
-                        </li>
-                        <li class="generator__filters-category">
-                            <h3>category</h3>
-                            <ul>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                            </ul>
-                        </li>
-                        <li class="generator__filters-category">
-                            <h3>category</h3>
-                            <ul>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                            </ul>
-                        </li>
-                        <li class="generator__filters-category">
-                            <h3>category</h3>
-                            <ul>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                            </ul>
-                        </li>
-                        <li class="generator__filters-category">
-                            <h3>category</h3>
-                            <ul>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                                <li class="generator__filters-item"><input type="checkbox" id="test"><label for="test"></label>item</li>
-                            </ul>
-                        </li>
                         <li class="generator__filters-category">
                             <h3>category</h3>
                             <ul>
@@ -117,11 +83,11 @@
             </a>
             <div class="footer__effect-wrapper-left"><span class="left"></span></div>
             <div class="footer__effect-wrapper-right"><span class="right"></span></div>
-            <a href="">
+            <a href="http://localhost:3000/generator">
                 <span>Generator</span>
             </a>
-            <a href="../pages/ingredients.html">
-                <span>ingredients</span>
+            <a href="http://localhost:3000/pizzas">
+                <span>Pizzas</span>
             </a>
             <span>&copy; javascript year auto increment Dion Vos</span>
         </footer>
