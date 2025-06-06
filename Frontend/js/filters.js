@@ -1,5 +1,7 @@
 const filterWrapper = document.querySelector('.generator__filters-wrapper');
 
+var checkboxes;
+
 async function loadFilters() {
   const res = await fetch('http://localhost:3000/api/v1/ingredients/grouped');
   const categories = await res.json();
@@ -24,8 +26,8 @@ async function loadFilters() {
       const checkboxId = `${category}-${index}`; // unique ID per checkbox
 
       itemEl.innerHTML = `
-        <input type="checkbox" id="${checkboxId}" name="${name}">
-        <label for="${checkboxId}"></label>${name}
+        <input type="checkbox" id="${checkboxId}" class="topping_checkbox" name="${name}">
+        <label for="${checkboxId}">${name}</label>
       `;
 
       itemList.appendChild(itemEl);
@@ -34,6 +36,25 @@ async function loadFilters() {
     categoryEl.appendChild(itemList);
     filterWrapper.appendChild(categoryEl);
   }
+  checkboxes = document.querySelectorAll('.topping_checkbox');
 }
+
+document.getElementById('check_all').addEventListener('click', function() {
+    checkboxes.forEach(function(checkbox) {
+        checkbox.checked = true;
+    });
+});
+
+document.getElementById('uncheck_all').addEventListener('click', function() {
+    checkboxes.forEach(function(checkbox) {
+        checkbox.checked = false;
+    });
+});
+
+document.getElementById('check_random').addEventListener('click', function() {
+    checkboxes.forEach(function(checkbox) {
+        checkbox.checked = Math.random() < .5;
+    });
+});
 
 loadFilters();
