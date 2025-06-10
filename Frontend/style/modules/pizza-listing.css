@@ -1,0 +1,27 @@
+.pizza__listing{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap-md);
+    padding-top: var(--padding-md);
+}
+
+.pizza__item{
+    background: var(--secondary-bg-color);
+    padding: var(--padding-sm);
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+}
+
+.pizza__item .h3{
+    text-align: center;
+    padding: var(--padding-xxs);
+    background-color: var(--tetriary-bg-color);
+    border-radius: var(--border-radius-md);
+    color: var(--primary-text-color);
+}
+
+.pizza__item button{
+    align-self: center;
+}

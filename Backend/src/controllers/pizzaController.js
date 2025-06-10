@@ -20,6 +20,25 @@ export const getPizzaById = (req, res) => {
   }
 };
 
+// GET pizza info for listing
+export const getPizzaSummaries = (req, res) => {
+  const stmt = db.prepare(`
+    SELECT 
+      p.id, 
+      p.name, 
+      COUNT(pi.ingredient_id) AS toppingCount,
+      ROUND(AVG(r.rating), 1) AS averageRating
+    FROM pizza p
+    LEFT JOIN pizza_ingredient pi ON p.id = pi.pizza_id
+    LEFT JOIN review r ON p.id = r.pizza_id
+    GROUP BY p.id
+  `);
+
+  const pizzas = stmt.all();
+  res.json(pizzas);
+};
+
+
 // POST create new pizza
 export const createPizza = (req, res) => {
   const { name } = req.body;
