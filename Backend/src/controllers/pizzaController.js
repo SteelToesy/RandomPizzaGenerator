@@ -26,10 +26,11 @@ export const getPizzaSummaries = (req, res) => {
     SELECT 
       p.id, 
       p.name, 
-      COUNT(pi.ingredient_id) AS toppingCount,
+      COUNT(DISTINCT ri.ingredient_id) AS toppingCount,
       ROUND(AVG(r.rating), 1) AS averageRating
     FROM pizza p
-    LEFT JOIN pizza_ingredient pi ON p.id = pi.pizza_id
+    LEFT JOIN recipe rc ON p.id = rc.pizza_id
+    LEFT JOIN recipe_ingredient ri ON rc.id = ri.recipe_id
     LEFT JOIN review r ON p.id = r.pizza_id
     GROUP BY p.id
   `);
@@ -37,6 +38,7 @@ export const getPizzaSummaries = (req, res) => {
   const pizzas = stmt.all();
   res.json(pizzas);
 };
+
 
 
 // POST create new pizza
