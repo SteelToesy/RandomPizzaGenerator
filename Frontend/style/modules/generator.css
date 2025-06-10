@@ -54,7 +54,7 @@
 .generator__sticky{
     display: flex;
     flex-direction: column;
-    gap: var(--gap-lg);
+    gap: var(--gap-md);
     align-items: center;
     position: sticky;
     top: var(--padding-lg);
@@ -69,6 +69,17 @@
 
 .generator__pizza img{
     aspect-ratio: 1/1;
+}
+
+.generator__submission-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-xs)
+}
+
+.generator__submission-button input[type="text"]{
+    background-color: var(--secondary-bg-color);
 }
 
 @keyframes spin {
