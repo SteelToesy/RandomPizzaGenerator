@@ -27,13 +27,14 @@ async function loadFilters() {
         <input type="checkbox" id="${checkboxId}" name="${name}">
         <label for="${checkboxId}"></label>${name}
       `;
-
       itemList.appendChild(itemEl);
     });
 
     categoryEl.appendChild(itemList);
     filterWrapper.appendChild(categoryEl);
   }
+
+  checkboxes = Array.from(document.querySelectorAll('.generator__filters-item input[type="checkbox"]'));
 }
 
 
@@ -55,7 +56,7 @@ document.getElementById('check_random').addEventListener('click', function() {
     });
 });
 
-loadFilters();
+//slide toggle
 
 function initializeCategoryToggle() {
   document.querySelectorAll('.generator__filters-category').forEach(category => {
@@ -89,7 +90,67 @@ function initializeCategoryToggle() {
   });
 }
 
+//pizza generation
+function setupPizzaGenerationButton() {
+  const button = document.querySelector('.generator__submission-button.btn__primary');
+
+  if (!button) return;
+
+  button.addEventListener('click', async () => {
+    const nameInput = document.querySelector('#generator__pizza-name');
+    let pizzaName = nameInput.value.trim();
+
+    const checked = Array.from(document.querySelectorAll('.generator__filters-item input:checked'));
+    const selectedIngredients = checked.map(input => input.name);
+
+    if (selectedIngredients.length === 0) {
+      const allCheckboxes = Array.from(document.querySelectorAll('.generator__filters-item input'));
+      const shuffled = allCheckboxes.sort(() => 0.5 - Math.random());
+      const randomCount = Math.floor(Math.random() * 4) + 1;
+      const randomSelection = shuffled.slice(0, randomCount).map(cb => cb.name);
+      selectedIngredients.push(...randomSelection);
+    }
+
+    if (!pizzaName) {
+      try {
+        const res = await fetch('http://localhost:3000/api/v1/pizzas');
+        const pizzas = await res.json();
+        pizzaName = `Pizza ${pizzas.length + 1}`;
+      } catch (error) {
+        alert('Failed to fetch existing pizzas');
+        return;
+      }
+    }
+
+    const payload = {
+      name: pizzaName,
+      ingredients: selectedIngredients
+    };
+
+    try {
+      const response = await fetch('http://localhost:3000/api/v1/pizzas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        alert('Pizza created!');
+        nameInput.value = '';
+        document.querySelectorAll('.generator__filters-item input:checked')
+          .forEach(cb => cb.checked = false);
+      } else {
+        alert('Error creating pizza.');
+      }
+    } catch (error) {
+      alert('Network error while creating pizza.');
+    }
+  });
+}
+
+
 window.addEventListener('DOMContentLoaded', async () => {
   await loadFilters();
+  setupPizzaGenerationButton();
   initializeCategoryToggle();
 });

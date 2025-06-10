@@ -43,23 +43,40 @@ export const getPizzaSummaries = (req, res) => {
 
 // POST create new pizza
 export const createPizza = (req, res) => {
-  const { name } = req.body;
+  const { name, ingredients } = req.body;
 
-  if (!name) {
-    return res.status(400).json({ message: 'Pizza name is required' });
+  if (!name || !Array.isArray(ingredients) || ingredients.length === 0) {
+    return res.status(400).json({ message: 'Invalid data' });
   }
 
-  try {
-    const insertStmt = db.prepare('INSERT INTO pizza (name) VALUES (?)');
-    const info = insertStmt.run(name);
+  const insertPizza = db.prepare('INSERT INTO pizza (name) VALUES (?)');
+  const result = insertPizza.run(name);
+  const pizzaId = result.lastInsertRowid;
 
-    const newPizza = db.prepare('SELECT * FROM pizza WHERE id = ?').get(info.lastInsertRowid);
-    res.status(201).json(newPizza);
-  } catch (error) {
-    console.error('Error creating pizza:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
+  const insertRecipe = db.prepare('INSERT INTO recipe (pizza_id) VALUES (?)');
+  const recipeResult = insertRecipe.run(pizzaId);
+  const recipeId = recipeResult.lastInsertRowid;
+
+  const insertRecipeIngredient = db.prepare(
+    'INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (?, ?)'
+  );
+
+  const getIngredientId = db.prepare('SELECT id FROM ingredient WHERE name = ?');
+
+  const insertMany = db.transaction((ingredientNames) => {
+    for (const name of ingredientNames) {
+      const row = getIngredientId.get(name);
+      if (row) {
+        insertRecipeIngredient.run(recipeId, row.id);
+      }
+    }
+  });
+
+  insertMany(ingredients);
+
+  res.status(201).json({ message: 'Pizza created', pizzaId, recipeId });
 };
+
 
 // PATCH/PUT update pizza
 export const updatePizza = (req, res) => {
