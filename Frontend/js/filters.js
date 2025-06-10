@@ -5,8 +5,6 @@ var checkboxes;
 async function loadFilters() {
   const res = await fetch('http://localhost:3000/api/v1/ingredients/grouped');
   const categories = await res.json();
-  console.log(categories);
-
   filterWrapper.innerHTML = ''; // Clear existing HTML
 
   for (const [category, items] of Object.entries(categories)) {
@@ -26,8 +24,8 @@ async function loadFilters() {
       const checkboxId = `${category}-${index}`; // unique ID per checkbox
 
       itemEl.innerHTML = `
-        <input type="checkbox" id="${checkboxId}" class="topping_checkbox" name="${name}">
-        <label for="${checkboxId}">${name}</label>
+        <input type="checkbox" id="${checkboxId}" name="${name}">
+        <label for="${checkboxId}"></label>${name}
       `;
 
       itemList.appendChild(itemEl);
@@ -36,8 +34,8 @@ async function loadFilters() {
     categoryEl.appendChild(itemList);
     filterWrapper.appendChild(categoryEl);
   }
-  checkboxes = document.querySelectorAll('.topping_checkbox');
 }
+
 
 document.getElementById('check_all').addEventListener('click', function() {
     checkboxes.forEach(function(checkbox) {
@@ -58,3 +56,40 @@ document.getElementById('check_random').addEventListener('click', function() {
 });
 
 loadFilters();
+
+function initializeCategoryToggle() {
+  document.querySelectorAll('.generator__filters-category').forEach(category => {
+    const title = category.querySelector('h3');
+    const itemList = category.querySelector('ul');
+
+    let isOpen = false;
+
+    itemList.style.height = '0';
+    itemList.style.overflow = 'hidden';
+    itemList.style.transition = 'height 0.3s ease';
+
+    title.addEventListener('click', () => {
+      if (isOpen) {
+        itemList.style.height = itemList.scrollHeight + 'px';
+        requestAnimationFrame(() => {
+          itemList.style.height = '0';
+        });
+      } else {
+        itemList.style.height = itemList.scrollHeight + 'px';
+
+        const onOpenEnd = () => {
+          itemList.style.height = 'auto';
+          itemList.removeEventListener('transitionend', onOpenEnd);
+        };
+        itemList.addEventListener('transitionend', onOpenEnd);
+      }
+
+      isOpen = !isOpen;
+    });
+  });
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+  await loadFilters();
+  initializeCategoryToggle();
+});
