@@ -67,20 +67,40 @@
                         </li>
                     </ul>
                 </div>
-                <div class="generator__submission">
+                <div class="generator__generation">
                     <div class="generator__sticky">
                         <div class="generator__pizza">
                             <img class="generator__pizza-bottom" src="../images/BlankPizza.png" alt="Blank Pizza">
                         </div>
-                        <div class="generator__submission-button">
-                            <label for="generator__pizza-name">
-                                Name of Pizza
-                            </label>
-                            <input type="text" class="generator__pizza-name" id="generator__pizza-name" name="generator__pizza-name">
-                            <button class="generator__submission-button btn btn__primary">Generate My Pizza!</button>
+                        <div class="generator__generation-button">
+                            <button class="generator__generation-button btn btn__primary">Generate My Pizza!</button>
                         </div>
                     </div>
                 </div>
+                <form class="generator__submission">
+                    <div class="generator__ingredients-list">
+                        <span>Generated ingredients:</span>
+                        <ul class="generator__ingredients-generated">
+                            <li class="generator__ingredients-item">ingredient</li>
+                        </ul>
+                    </div>
+                    <div class="generator__input-field">
+                        <label for="generator__pizza-name">Name of Pizza</label>
+                        <input type="text" class="generator__pizza-name" id="generator__pizza-name" name="generator__pizza-name">
+                    </div>
+                    <div class="generator__input-field">
+                        <label for="generator__pizza-description">Pizza description</label>
+                        <div class="generator__pizza-description" id="generator__pizza-description"type="richtext" contenteditable="true"></div>
+                    </div>
+                    <div class="generator__input-field">
+                        <label for="generator__pizza-steps">Pizza making steps</label>
+                        <div class="generator__pizza-steps" id="generator__pizza-steps" type="richtext" contenteditable="true"></div>
+                    </div>
+                    <div class="generator__submission-buttons">
+                        <button class="generator__submission-regenerate-button btn btn__primary">Regenerate My Pizza!</button>
+                        <button class="generator__submission-button btn btn__primary">Save My Pizza!</button>
+                    </div>
+                </form>
             </section> 
         </main>
         <footer>

@@ -40,11 +40,15 @@ input[type="checkbox"]:checked + label::before {
 
 /* number field */
 
-input[type="number"], input[type="text"] {
+input[type="number"], input[type="text"], div[type="richtext"] {
     width: 100%;
     border-radius: var(--border-radius-sm);
     border: unset;
-    background-color: var(--primary-bg-color);
+    background-color: var(--secondary-bg-color);
     outline: unset;
     padding-left: var(--padding-xs);
+}
+
+div[type="richtext"]{
+    min-height: 100px;
 }

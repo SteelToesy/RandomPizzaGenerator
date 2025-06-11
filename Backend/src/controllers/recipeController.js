@@ -21,23 +21,36 @@ export const getRecipeById = (req, res) => {
 
 // POST create recipe
 export const createRecipe = (req, res) => {
-  const { pizza_id } = req.body;
-
-  if (!pizza_id) {
-    return res.status(400).json({ message: 'pizza_id is required' });
-  }
+  const { name, description, steps, pizzaId, ingredients } = req.body;
 
   try {
-    const insertStmt = db.prepare('INSERT INTO recipe (pizza_id) VALUES (?)');
-    const info = insertStmt.run(pizza_id);
+    const insertRecipe = db.prepare(`
+      INSERT INTO recipe (name, description, steps, pizza_id)
+      VALUES (?, ?, ?, ?)
+    `);
+    const result = insertRecipe.run(name, description, steps, pizzaId);
+    const recipeId = result.lastInsertRowid;
 
-    const newRecipe = db.prepare('SELECT * FROM recipe WHERE id = ?').get(info.lastInsertRowid);
-    res.status(201).json(newRecipe);
+    const getIngredientId = db.prepare(`SELECT id FROM ingredient WHERE name = ?`);
+    const linkIngredient = db.prepare(`
+      INSERT INTO recipe_ingredient (recipe_id, ingredient_id)
+      VALUES (?, ?)
+    `);
+
+    for (const ingredientName of ingredients) {
+      const row = getIngredientId.get(ingredientName);
+      if (row) {
+        linkIngredient.run(recipeId, row.id);
+      }
+    }
+
+    res.status(201).json({ id: recipeId });
   } catch (error) {
-    console.error('Error creating recipe:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error(error);
+    res.status(500).json({ error: 'Failed to create recipe' });
   }
 };
+
 
 // PATCH/PUT update recipe
 export const updateRecipe = (req, res) => {

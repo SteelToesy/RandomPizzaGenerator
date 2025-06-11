@@ -45,10 +45,18 @@
     padding: var(--padding-xs);
 }
 
-/* pizzas/submission section */
+.generator__filters input[type="number"]{
+    background-color: var(--primary-bg-color);
+}
 
-.generator__submission{
+/* pizzas/generation section */
+
+.generator__generation{
     position: relative;
+}
+
+.generator__generation.disabled{
+    display: none;
 }
 
 .generator__sticky{
@@ -71,15 +79,34 @@
     aspect-ratio: 1/1;
 }
 
-.generator__submission-button{
+.generator__generation-button{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--gap-xs)
 }
 
-.generator__submission-button input[type="text"]{
-    background-color: var(--secondary-bg-color);
+/*submission section*/
+
+.generator__submission{
+    display: none;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    width: 100%;
+    max-width: 400px;
+}
+
+.generator__submission.active{
+    display: flex;
+}
+
+.generator__ingredients-item{
+    list-style: disc;
+    margin-left: 20px;
+}
+
+.generator__submission-button.btn.btn__primary{
+    align-self: center;
 }
 
 @keyframes spin {

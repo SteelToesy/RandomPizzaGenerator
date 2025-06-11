@@ -89,28 +89,55 @@ function initializeCategoryToggle() {
     });
   });
 }
-
-//pizza generation
+//generating pizza
 function setupPizzaGenerationButton() {
-  const button = document.querySelector('.generator__submission-button.btn__primary');
+  const generationButtons = [
+    document.querySelector('.generator__submission-regenerate-button'),
+    document.querySelector('.generator__generation-button')
+  ];
 
-  if (!button) return;
+   generationButtons[1].addEventListener('click', async () => {
+    document.querySelector('.generator__submission').classList.add('active');
+    document.querySelector('.generator__generation').classList.add('disabled');
+  });
 
-  button.addEventListener('click', async () => {
+  generationButtons.forEach(button => {
+    if (button) {
+      button.addEventListener('click', async () => {
+
+      });
+    }
+  });
+}
+
+// saving pizza
+function setupPizzaSavingButton() {
+  const submissionButton = document.querySelector('.generator__submission-button.btn__primary');
+
+  const generationButton = document.querySelector('.generator__generation-button.btn__primary');
+
+  generationButton.addEventListener('click', async () => {
+    document.querySelector('.generator__submission').classList.add('active');
+    document.querySelector('.generator__generation').classList.add('disabled');
+  });
+
+  submissionButton.addEventListener('click', async () => {
     const nameInput = document.querySelector('#generator__pizza-name');
     let pizzaName = nameInput.value.trim();
 
     const checked = Array.from(document.querySelectorAll('.generator__filters-item input:checked'));
-    const selectedIngredients = checked.map(input => input.name);
+    let selectedIngredients = checked.map(input => input.name);
 
+    // If no ingredients selected, randomly choose 1-4
     if (selectedIngredients.length === 0) {
       const allCheckboxes = Array.from(document.querySelectorAll('.generator__filters-item input'));
       const shuffled = allCheckboxes.sort(() => 0.5 - Math.random());
       const randomCount = Math.floor(Math.random() * 4) + 1;
       const randomSelection = shuffled.slice(0, randomCount).map(cb => cb.name);
-      selectedIngredients.push(...randomSelection);
+      selectedIngredients = randomSelection;
     }
 
+    // If name is empty, auto-generate one
     if (!pizzaName) {
       try {
         const res = await fetch('http://localhost:3000/api/v1/pizzas');
@@ -122,35 +149,49 @@ function setupPizzaGenerationButton() {
       }
     }
 
-    const payload = {
-      name: pizzaName,
-      ingredients: selectedIngredients
-    };
-
     try {
-      const response = await fetch('http://localhost:3000/api/v1/pizzas', {
+      // Step 1: Create the Pizza
+      const pizzaRes = await fetch('http://localhost:3000/api/v1/pizzas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({ name: pizzaName })
       });
 
-      if (response.ok) {
-        alert('Pizza created!');
-        nameInput.value = '';
-        document.querySelectorAll('.generator__filters-item input:checked')
-          .forEach(cb => cb.checked = false);
-      } else {
-        alert('Error creating pizza.');
-      }
+      if (!pizzaRes.ok) throw new Error('Failed to create pizza');
+
+      const pizza = await pizzaRes.json();
+
+      // Step 2: Create the Recipe and link ingredients
+      const recipePayload = {
+        name: `${pizzaName} Recipe`,
+        description: 'Custom generated pizza',
+        steps: 'Auto-generated: Add ingredients and bake.',
+        pizzaId: pizza.id,
+        ingredients: selectedIngredients
+      };
+
+      const recipeRes = await fetch('http://localhost:3000/api/v1/recipes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(recipePayload)
+      });
+
+      if (!recipeRes.ok) throw new Error('Failed to create recipe');
+
+      alert('Pizza and recipe created!');
+      nameInput.value = '';
+      document.querySelectorAll('.generator__filters-item input:checked')
+        .forEach(cb => cb.checked = false);
+
     } catch (error) {
-      alert('Network error while creating pizza.');
+      alert(`Error: ${error.message}`);
     }
   });
 }
 
-
 window.addEventListener('DOMContentLoaded', async () => {
   await loadFilters();
   setupPizzaGenerationButton();
+  setupPizzaSavingButton();
   initializeCategoryToggle();
 });
