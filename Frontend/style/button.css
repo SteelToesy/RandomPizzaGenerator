@@ -8,6 +8,7 @@
     z-index: 2;
     border: unset;
     width: fit-content;
+    cursor: pointer;
 }
 
 .btn__primary{

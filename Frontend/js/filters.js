@@ -89,14 +89,25 @@ function initializeCategoryToggle() {
     });
   });
 }
+
+let selectedIngredients;
+
 //generating pizza
 function setupPizzaGenerationButton() {
+  const listContainer = document.querySelector('.generator__ingredients-generated');
+
+
   const generationButtons = [
     document.querySelector('.generator__submission-regenerate-button'),
     document.querySelector('.generator__generation-button')
   ];
 
-   generationButtons[1].addEventListener('click', async () => {
+  document.querySelector('.generator__typ-regenerate-button').addEventListener('click', () => {
+    document.querySelector('.generator__generation').classList.remove('disabled');
+    document.querySelector('.generator__typ').classList.remove('active');
+  })
+
+  document.querySelector('.generator__generation-button').addEventListener('click', async () => {
     document.querySelector('.generator__submission').classList.add('active');
     document.querySelector('.generator__generation').classList.add('disabled');
   });
@@ -104,7 +115,19 @@ function setupPizzaGenerationButton() {
   generationButtons.forEach(button => {
     if (button) {
       button.addEventListener('click', async () => {
+        listContainer.innerHTML = '';
 
+        const toppingAmount = parseInt(document.getElementById('topping_amount').value, 10);
+        const checked = Array.from(document.querySelectorAll('.generator__filters-item input:checked'));
+        const randomizedChecked = checked.sort(() => Math.random() - 0.5);
+        selectedIngredients = randomizedChecked.slice(0, toppingAmount).map(input => input.name);
+
+        selectedIngredients.forEach(ingredient => {
+            const li = document.createElement('li');
+            li.className = 'generator__ingredients-item';
+            li.textContent = ingredient;
+            listContainer.appendChild(li);
+        });
       });
     }
   });
@@ -114,19 +137,14 @@ function setupPizzaGenerationButton() {
 function setupPizzaSavingButton() {
   const submissionButton = document.querySelector('.generator__submission-button.btn__primary');
 
-  const generationButton = document.querySelector('.generator__generation-button.btn__primary');
-
-  generationButton.addEventListener('click', async () => {
-    document.querySelector('.generator__submission').classList.add('active');
-    document.querySelector('.generator__generation').classList.add('disabled');
-  });
-
   submissionButton.addEventListener('click', async () => {
     const nameInput = document.querySelector('#generator__pizza-name');
-    let pizzaName = nameInput.value.trim();
+    const descriptionInput = document.getElementById('generator__pizza-description');
+    const stepsInput = document.getElementById('generator__pizza-steps');
 
-    const checked = Array.from(document.querySelectorAll('.generator__filters-item input:checked'));
-    let selectedIngredients = checked.map(input => input.name);
+    let pizzaName = nameInput.value.trim();
+    let pizzaDescription = descriptionInput.innerText.trim();
+    let pizzaSteps = stepsInput.innerText.trim();
 
     // If no ingredients selected, randomly choose 1-4
     if (selectedIngredients.length === 0) {
@@ -164,8 +182,8 @@ function setupPizzaSavingButton() {
       // Step 2: Create the Recipe and link ingredients
       const recipePayload = {
         name: `${pizzaName} Recipe`,
-        description: 'Custom generated pizza',
-        steps: 'Auto-generated: Add ingredients and bake.',
+        description: pizzaDescription,
+        steps: pizzaSteps,
         pizzaId: pizza.id,
         ingredients: selectedIngredients
       };
@@ -178,7 +196,9 @@ function setupPizzaSavingButton() {
 
       if (!recipeRes.ok) throw new Error('Failed to create recipe');
 
-      alert('Pizza and recipe created!');
+      document.querySelector('.generator__submission').classList.remove('active');
+      document.querySelector('.generator__typ').classList.add('active');
+
       nameInput.value = '';
       document.querySelectorAll('.generator__filters-item input:checked')
         .forEach(cb => cb.checked = false);

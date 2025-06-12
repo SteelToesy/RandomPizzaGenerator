@@ -55,6 +55,84 @@ insertIngredient.run('Basil', 'herb', '10 leaves', 'vegetable');
 insertIngredient.run('Pepperoni', 'meat', '80g', 'meat');
 insertIngredient.run('Olives', 'topping', '30g', 'vegetable');
 
+insertIngredient.run('Mushrooms', 'topping', '50g', 'vegetable');
+insertIngredient.run('Onions', 'topping', '40g', 'vegetable');
+insertIngredient.run('Green Peppers', 'topping', '35g', 'vegetable');
+insertIngredient.run('Black Olives', 'topping', '30g', 'vegetable');
+insertIngredient.run('Parmesan', 'cheese', '50g', 'dairy');
+
+insertIngredient.run('Ham', 'meat', '70g', 'meat');
+insertIngredient.run('Bacon', 'meat', '60g', 'meat');
+insertIngredient.run('Pineapple', 'topping', '50g', 'fruit');
+insertIngredient.run('Chicken', 'meat', '80g', 'meat');
+insertIngredient.run('Spinach', 'topping', '30g', 'vegetable');
+
+insertIngredient.run('Sun-dried Tomatoes', 'topping', '40g', 'vegetable');
+insertIngredient.run('Ricotta', 'cheese', '60g', 'dairy');
+insertIngredient.run('Arugula', 'topping', '20g', 'vegetable');
+insertIngredient.run('Gorgonzola', 'cheese', '50g', 'dairy');
+insertIngredient.run('Anchovies', 'meat', '30g', 'meat');
+
+insertIngredient.run('Zucchini', 'topping', '45g', 'vegetable');
+insertIngredient.run('Goat Cheese', 'cheese', '55g', 'dairy');
+insertIngredient.run('Artichoke Hearts', 'topping', '40g', 'vegetable');
+insertIngredient.run('Prosciutto', 'meat', '50g', 'meat');
+insertIngredient.run('Cherry Tomatoes', 'topping', '40g', 'vegetable');
+
+insertIngredient.run('Feta', 'cheese', '50g', 'dairy');
+insertIngredient.run('Eggplant', 'topping', '50g', 'vegetable');
+insertIngredient.run('Oregano', 'herb', '5g', 'vegetable');
+insertIngredient.run('Rosemary', 'herb', '3g', 'vegetable');
+insertIngredient.run('Chili Flakes', 'spice', '2g', 'vegetable');
+
+insertIngredient.run('Truffle Oil', 'sauce', '10ml', 'oil');
+insertIngredient.run('Pesto', 'sauce', '40g', 'vegetable');
+insertIngredient.run('Barbecue Sauce', 'sauce', '50g', 'condiment');
+insertIngredient.run('Garlic', 'topping', '10g', 'vegetable');
+insertIngredient.run('Caramelized Onions', 'topping', '40g', 'vegetable');
+
+insertIngredient.run('Sweet Corn', 'topping', '30g', 'vegetable');
+insertIngredient.run('Capers', 'topping', '10g', 'vegetable');
+insertIngredient.run('Crushed Red Pepper', 'spice', '3g', 'vegetable');
+insertIngredient.run('Paprika', 'spice', '3g', 'vegetable');
+insertIngredient.run('Sausage', 'meat', '70g', 'meat');
+
+insertIngredient.run('Smoked Salmon', 'meat', '60g', 'meat');
+insertIngredient.run('Broccoli', 'topping', '40g', 'vegetable');
+insertIngredient.run('Blue Cheese', 'cheese', '40g', 'dairy');
+insertIngredient.run('Alfredo Sauce', 'sauce', '50g', 'dairy');
+insertIngredient.run('Egg', 'topping', '1 piece', 'protein');
+
+insertIngredient.run('Chorizo', 'meat', '60g', 'meat');
+insertIngredient.run('Jalapeños', 'topping', '20g', 'vegetable');
+insertIngredient.run('Leeks', 'topping', '30g', 'vegetable');
+insertIngredient.run('Beef', 'meat', '80g', 'meat');
+insertIngredient.run('Red Onion', 'topping', '30g', 'vegetable');
+
+insertIngredient.run('Seafood Mix', 'meat', '70g', 'meat');
+insertIngredient.run('Crab Meat', 'meat', '50g', 'meat');
+insertIngredient.run('Tuna', 'meat', '60g', 'meat');
+insertIngredient.run('Cheddar', 'cheese', '50g', 'dairy');
+insertIngredient.run('Horseradish Sauce', 'sauce', '20g', 'condiment');
+
+insertIngredient.run('Fig', 'topping', '40g', 'fruit');
+insertIngredient.run('Pear', 'topping', '35g', 'fruit');
+insertIngredient.run('Apple Slices', 'topping', '30g', 'fruit');
+insertIngredient.run('Grapes', 'topping', '30g', 'fruit');
+
+insertIngredient.run('Olive Oil', 'sauce', '15ml', 'oil');
+insertIngredient.run('Chili Oil', 'sauce', '10ml', 'oil');
+insertIngredient.run('Garlic Oil', 'sauce', '10ml', 'oil');
+
+insertIngredient.run('Hot Sauce', 'sauce', '10ml', 'condiment');
+insertIngredient.run('Mustard', 'sauce', '15g', 'condiment');
+insertIngredient.run('Aioli', 'sauce', '20g', 'condiment');
+
+insertIngredient.run('Tofu', 'topping', '60g', 'protein');
+insertIngredient.run('Tempeh', 'topping', '60g', 'protein');
+insertIngredient.run('Boiled Egg', 'topping', '1 piece', 'protein');
+insertIngredient.run('Lentils', 'topping', '50g', 'protein');
+
 const insertPizza = db.prepare('INSERT INTO pizza (name) VALUES (?)');
 insertPizza.run('Margherita');
 insertPizza.run('Pepperoni Feast');
