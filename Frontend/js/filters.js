@@ -5,7 +5,7 @@ var checkboxes;
 async function loadFilters() {
   const res = await fetch('http://localhost:3000/api/v1/ingredients/grouped');
   const categories = await res.json();
-  filterWrapper.innerHTML = ''; // Clear existing HTML
+  filterWrapper.innerHTML = '';
 
   for (const [category, items] of Object.entries(categories)) {
     const categoryEl = document.createElement('li');
@@ -21,7 +21,7 @@ async function loadFilters() {
       const itemEl = document.createElement('li');
       itemEl.classList.add('generator__filters-item');
 
-      const checkboxId = `${category}-${index}`; // unique ID per checkbox
+      const checkboxId = `${category}-${index}`;
 
       itemEl.innerHTML = `
         <input type="checkbox" id="${checkboxId}" name="${name}">
@@ -133,7 +133,6 @@ function setupPizzaGenerationButton() {
   });
 }
 
-// saving pizza
 function setupPizzaSavingButton() {
   const submissionButton = document.querySelector('.generator__submission-button.btn__primary');
 
@@ -146,7 +145,6 @@ function setupPizzaSavingButton() {
     let pizzaDescription = descriptionInput.innerText.trim();
     let pizzaSteps = stepsInput.innerText.trim();
 
-    // If no ingredients selected, randomly choose 1-4
     if (selectedIngredients.length === 0) {
       const allCheckboxes = Array.from(document.querySelectorAll('.generator__filters-item input'));
       const shuffled = allCheckboxes.sort(() => 0.5 - Math.random());
@@ -155,7 +153,6 @@ function setupPizzaSavingButton() {
       selectedIngredients = randomSelection;
     }
 
-    // If name is empty, auto-generate one
     if (!pizzaName) {
       try {
         const res = await fetch('http://localhost:3000/api/v1/pizzas');
@@ -168,7 +165,6 @@ function setupPizzaSavingButton() {
     }
 
     try {
-      // Step 1: Create the Pizza
       const pizzaRes = await fetch('http://localhost:3000/api/v1/pizzas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -179,7 +175,6 @@ function setupPizzaSavingButton() {
 
       const pizza = await pizzaRes.json();
 
-      // Step 2: Create the Recipe and link ingredients
       const recipePayload = {
         name: `${pizzaName} Recipe`,
         description: pizzaDescription,

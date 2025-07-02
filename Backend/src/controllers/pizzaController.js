@@ -1,13 +1,15 @@
 import db from '../db/db.js';
 
-// GET all pizzas
 export const getAllPizzas = (req, res) => {
   const stmt = db.prepare('SELECT * FROM pizza');
   const pizzas = stmt.all();
-  res.json(pizzas);
+  if (pizzas.length > 0){
+    res.json(pizzas);
+  } else {
+    res.status(404).json({error: 'No pizzas found'})
+  }
 };
 
-// GET pizza by ID
 export const getPizzaById = (req, res) => {
   const { id } = req.params;
   const stmt = db.prepare('SELECT * FROM pizza WHERE id = ?');
@@ -20,7 +22,6 @@ export const getPizzaById = (req, res) => {
   }
 };
 
-// GET pizza info for listing
 export const getPizzaSummaries = (req, res) => {
   const stmt = db.prepare(`
     SELECT 
@@ -39,9 +40,6 @@ export const getPizzaSummaries = (req, res) => {
   res.json(pizzas);
 };
 
-
-
-// POST create new pizza
 export const createPizza = (req, res) => {
   const { name } = req.body;
 
@@ -58,8 +56,6 @@ export const createPizza = (req, res) => {
   }
 };
 
-
-// PATCH/PUT update pizza
 export const updatePizza = (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
@@ -75,10 +71,9 @@ export const updatePizza = (req, res) => {
   }
 };
 
-// DELETE pizza
 export const deletePizza = (req, res) => {
   const { id } = req.params;
   const deleteStmt = db.prepare('DELETE FROM pizza WHERE id = ?');
   deleteStmt.run(id);
-  res.status(204).send(); // No Content
+  res.status(204).send(); 
 };

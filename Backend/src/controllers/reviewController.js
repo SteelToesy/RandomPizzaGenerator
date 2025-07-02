@@ -1,13 +1,11 @@
 import db from '../db/db.js';
 
-// GET all reviews
 export const getAllReviews = (req, res) => {
   const stmt = db.prepare('SELECT * FROM review');
   const reviews = stmt.all();
   res.json(reviews);
 };
 
-// GET review by ID
 export const getReviewById = (req, res) => {
   const stmt = db.prepare('SELECT * FROM review WHERE id = ?');
   const review = stmt.get(req.params.id);
@@ -19,7 +17,6 @@ export const getReviewById = (req, res) => {
   }
 };
 
-// POST create review
 export const createReview = (req, res) => {
   const { pizza_id, rating, comment } = req.body;
 
@@ -41,7 +38,6 @@ export const createReview = (req, res) => {
   }
 };
 
-// PATCH/PUT update review
 export const updateReview = (req, res) => {
   const { rating, comment } = req.body;
 
@@ -58,7 +54,6 @@ export const updateReview = (req, res) => {
   }
 };
 
-// DELETE review
 export const deleteReview = (req, res) => {
   const stmt = db.prepare('DELETE FROM review WHERE id = ?');
   stmt.run(req.params.id);

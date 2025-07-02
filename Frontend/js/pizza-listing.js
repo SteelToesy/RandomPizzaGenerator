@@ -3,7 +3,7 @@ const pizzaListing = document.querySelector('.pizza__listing');
 async function loadPizzas() {
   const res = await fetch('http://localhost:3000/api/v1/pizzas/summaries');
   const pizzas = await res.json();
-  pizzaListing.innerHTML = ''; // Clear existing pizzas
+  pizzaListing.innerHTML = '';
 
   pizzas.forEach(pizza => {
     const pizzaEl = document.createElement('div');

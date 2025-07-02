@@ -1,0 +1,29 @@
+Upgrades Web Basics
+
+1. Alle AI shit nakijken opnieuw structureren.
+
+2. Status codes implementeren. 404 past niet bij get all en lege lijst geeft 200
+
+4. Stuurt hele html files via backend ipv json data - voldoet niet aan lesmateriaal.
+
+5. REST principles niet overal juist geimplementeerd ingredients/grouped zou opgelost moeten worden met query parameters. 
+
+6. Geen validatie op parameters behalve presentie.  
+
+7. Voert sql queries direct uit in controller.
+
+8. Data niet toegevoegd aan db vanuit data array of json file, maar +- 100 losse insert statement aanroepen. Dit moet efficiënter opgelost worden. 
+
+9. pizza slider bouwen.
+
+10. files opschonen
+
+11. Geen inputvalidatie en foutafhandeling. 
+
+12. Geen DELETE/PUT geimplementeerd.
+
+Dingen gedaan:
+
+1. diagrammen gemaakt en toegelicht. 
+
+2. Typo hoofdletter aangepast voor REST principles, en omschrijving toegevoegd. Status codes toegevoegd voor missende waardes.

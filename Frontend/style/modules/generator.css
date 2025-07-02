@@ -127,7 +127,7 @@
 
 .generator__typ-buttons{
     display: flex;
-    gap: var(--gap-sm)
+    gap: var(--gap-sm);
 }
 
 @keyframes spin {

@@ -1,13 +1,11 @@
 import db from '../db/db.js';
 
-// GET all recipes
 export const getAllRecipes = (req, res) => {
   const stmt = db.prepare('SELECT * FROM recipe');
   const recipes = stmt.all();
   res.json(recipes);
 };
 
-// GET recipe by ID
 export const getRecipeById = (req, res) => {
   const stmt = db.prepare('SELECT * FROM recipe WHERE id = ?');
   const recipe = stmt.get(req.params.id);
@@ -19,7 +17,6 @@ export const getRecipeById = (req, res) => {
   }
 };
 
-// POST create recipe
 export const createRecipe = (req, res) => {
   const { name, description, steps, pizzaId, ingredients } = req.body;
 
@@ -52,7 +49,6 @@ export const createRecipe = (req, res) => {
 };
 
 
-// PATCH/PUT update recipe
 export const updateRecipe = (req, res) => {
   const { pizza_id } = req.body;
 
@@ -67,7 +63,6 @@ export const updateRecipe = (req, res) => {
   }
 };
 
-// DELETE recipe
 export const deleteRecipe = (req, res) => {
   const stmt = db.prepare('DELETE FROM recipe WHERE id = ?');
   stmt.run(req.params.id);

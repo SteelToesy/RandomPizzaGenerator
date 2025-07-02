@@ -1,13 +1,11 @@
 import db from '../db/db.js';
 
-// GET all ingredients
 export const getAllIngredients = (req, res) => {
   const stmt = db.prepare('SELECT * FROM ingredient');
   const ingredients = stmt.all();
   res.json(ingredients);
 };
 
-// GET one ingredient by ID
 export const getIngredientById = (req, res) => {
   const stmt = db.prepare('SELECT * FROM ingredient WHERE id = ?');
   const ingredient = stmt.get(req.params.id);
@@ -19,7 +17,6 @@ export const getIngredientById = (req, res) => {
   }
 };
 
-// POST create ingredient
 export const createIngredient = (req, res) => {
   const { name } = req.body;
   if (!name) return res.status(400).json({ message: 'Ingredient name is required' });
@@ -31,7 +28,6 @@ export const createIngredient = (req, res) => {
   res.status(201).json(newIngredient);
 };
 
-// PATCH/PUT update ingredient
 export const updateIngredient = (req, res) => {
   const { name } = req.body;
 
@@ -46,14 +42,12 @@ export const updateIngredient = (req, res) => {
   }
 };
 
-// DELETE ingredient
 export const deleteIngredient = (req, res) => {
   const stmt = db.prepare('DELETE FROM ingredient WHERE id = ?');
   stmt.run(req.params.id);
   res.status(204).send();
 };
 
-// GET ingredients grouped by category
 export const getIngredientsGroupedByCategory = (req, res) => {
   const rows = db.prepare('SELECT * FROM ingredient').all();
 

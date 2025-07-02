@@ -1,0 +1,121 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0" version="27.2.0">
+  <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
+    <mxGraphModel dx="978" dy="988" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-1" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-15" target="hJn_PnXHcM4ficYwxWuf-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="560" as="sourcePoint" />
+            <mxPoint x="240" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-3" value="Front-end" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-4" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-17" target="hJn_PnXHcM4ficYwxWuf-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="439.58" y="560" as="sourcePoint" />
+            <mxPoint x="439.58" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-5" value="Back-end" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-7" value="Database" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-8" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-9" target="hJn_PnXHcM4ficYwxWuf-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="639.5799999999999" y="560" as="sourcePoint" />
+            <mxPoint x="639.5799999999999" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-10" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1" target="hJn_PnXHcM4ficYwxWuf-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="640" y="480" as="sourcePoint" />
+            <mxPoint x="639.5799999999999" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-9" target="hJn_PnXHcM4ficYwxWuf-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-9" value="Geeft backend benodigde informatie" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-11" target="hJn_PnXHcM4ficYwxWuf-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-11" value="Stuurt Informatie naar front-end" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-13" value="Weergeeft database informatie aan gebruiker" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-16" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-22" target="hJn_PnXHcM4ficYwxWuf-15">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="560" as="sourcePoint" />
+            <mxPoint x="240" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-15" target="hJn_PnXHcM4ficYwxWuf-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-15" value="Drukt op knop om pizza op te slaan" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-18" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-23" target="hJn_PnXHcM4ficYwxWuf-17">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="439.58" y="560" as="sourcePoint" />
+            <mxPoint x="439.58" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-17" target="hJn_PnXHcM4ficYwxWuf-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-17" value="Voert gegevens om naar een query voor de database" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-31" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-20" target="hJn_PnXHcM4ficYwxWuf-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-20" value="Slaat gekregen informatie op" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-23" target="hJn_PnXHcM4ficYwxWuf-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-25" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1" target="hJn_PnXHcM4ficYwxWuf-23">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="440" y="480" as="sourcePoint" />
+            <mxPoint x="440" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-23" value="Geeft succes of error naar front-end" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-26" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1" target="hJn_PnXHcM4ficYwxWuf-22">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="480" as="sourcePoint" />
+            <mxPoint x="240" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-22" value="Weergeeft succes of error naar de gebruiker" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-27" target="hJn_PnXHcM4ficYwxWuf-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-27" value="Doet een fetch request voor benodigde informatie" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-30" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hJn_PnXHcM4ficYwxWuf-28" target="hJn_PnXHcM4ficYwxWuf-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hJn_PnXHcM4ficYwxWuf-28" value="doet een query om gegevens van database te krijgen" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
