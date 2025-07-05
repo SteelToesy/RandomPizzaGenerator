@@ -2,16 +2,6 @@ Upgrades Web Basics
 
 1. Alle AI shit nakijken opnieuw structureren.
 
-6. Geen validatie op parameters behalve presentie.  
-
-7. Voert sql queries direct uit in controller.
-
-8. Data niet toegevoegd aan db vanuit data array of json file, maar +- 100 losse insert statement aanroepen. Dit moet efficiënter opgelost worden. 
-
-9. pizza slider bouwen.
-
-10. files opschonen
-
 11. Geen inputvalidatie en foutafhandeling. 
 
 12. Geen DELETE/PUT geimplementeerd.
@@ -20,4 +10,10 @@ Dingen gedaan:
 
 1. diagrammen gemaakt en toegelicht. 
 
-2. Typo hoofdletter aangepast voor REST principles, en omschrijving toegevoegd. Status codes toegevoegd voor missende waardes.
+2. Typo hoofdletter aangepast voor REST principles, en omschrijving toegevoegd. 
+
+3. Status codes toegevoegd voor missende waardes.
+
+4. Data toevoeging veranderd naar een paar grote data array's, en losse insert statements vervangen
+
+5. ongebruikte files weggehaald files opgeschoond.
