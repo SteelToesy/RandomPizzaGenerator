@@ -2,12 +2,6 @@ Upgrades Web Basics
 
 1. Alle AI shit nakijken opnieuw structureren.
 
-2. Status codes implementeren. 404 past niet bij get all en lege lijst geeft 200
-
-4. Stuurt hele html files via backend ipv json data - voldoet niet aan lesmateriaal.
-
-5. REST principles niet overal juist geimplementeerd ingredients/grouped zou opgelost moeten worden met query parameters. 
-
 6. Geen validatie op parameters behalve presentie.  
 
 7. Voert sql queries direct uit in controller.

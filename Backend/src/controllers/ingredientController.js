@@ -4,6 +4,10 @@ export const getAllIngredients = (req, res) => {
   const stmt = db.prepare('SELECT * FROM ingredient');
   const ingredients = stmt.all();
   res.json(ingredients);
+  if (ingredients.length === 0) {
+    return res.status(404).json({ error: 'No ingredients found.' });
+  }
+  res.status(200).json(ingredients);
 };
 
 export const getIngredientById = (req, res) => {
@@ -36,7 +40,7 @@ export const updateIngredient = (req, res) => {
 
   if (info.changes > 0) {
     const updated = db.prepare('SELECT * FROM ingredient WHERE id = ?').get(req.params.id);
-    res.json(updated);
+    res.status(200).json(updated);
   } else {
     res.status(404).json({ message: 'Ingredient not found' });
   }
@@ -45,11 +49,18 @@ export const updateIngredient = (req, res) => {
 export const deleteIngredient = (req, res) => {
   const stmt = db.prepare('DELETE FROM ingredient WHERE id = ?');
   stmt.run(req.params.id);
+  if (info.changes === 0) {
+    return res.status(404).json({ message: 'Ingredient not found.' });
+  }
   res.status(204).send();
 };
 
 export const getIngredientsGroupedByCategory = (req, res) => {
   const rows = db.prepare('SELECT * FROM ingredient').all();
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'No ingredients found.' });
+    }
 
   const grouped = rows.reduce((acc, ingredient) => {
     const category = ingredient.category || 'Uncategorized';
@@ -58,7 +69,7 @@ export const getIngredientsGroupedByCategory = (req, res) => {
     }
     acc[category].push(ingredient.name);
     return acc;
-  }, {});
+  });
 
-  res.json(grouped);
+  res.status(200).json(grouped);
 };

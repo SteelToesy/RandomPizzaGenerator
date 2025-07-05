@@ -37,7 +37,12 @@ export const getPizzaSummaries = (req, res) => {
   `);
 
   const pizzas = stmt.all();
-  res.json(pizzas);
+
+  if (pizzas.length === 0) {
+    return res.status(404).json({ message: 'No pizzas found.' });
+  }
+
+  res.status(200).json(pizzas);
 };
 
 export const createPizza = (req, res) => {
@@ -75,5 +80,10 @@ export const deletePizza = (req, res) => {
   const { id } = req.params;
   const deleteStmt = db.prepare('DELETE FROM pizza WHERE id = ?');
   deleteStmt.run(id);
+
+  if (info.changes === 0) {
+    return res.status(404).json({ message: 'Pizza not found.' });
+  }
+
   res.status(204).send(); 
 };

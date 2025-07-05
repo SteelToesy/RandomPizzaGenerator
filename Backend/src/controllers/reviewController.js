@@ -3,7 +3,11 @@ import db from '../db/db.js';
 export const getAllReviews = (req, res) => {
   const stmt = db.prepare('SELECT * FROM review');
   const reviews = stmt.all();
-  res.json(reviews);
+
+  if (reviews === 0){
+    res.status(404).json({message: 'No reviews found'})
+  }
+    res.status(200).send();
 };
 
 export const getReviewById = (req, res) => {
@@ -57,5 +61,10 @@ export const updateReview = (req, res) => {
 export const deleteReview = (req, res) => {
   const stmt = db.prepare('DELETE FROM review WHERE id = ?');
   stmt.run(req.params.id);
+  
+  if (info.changes === 0) {
+    return res.status(404).json({ message: 'Review not found.' });
+  }
+
   res.status(204).send();
 };

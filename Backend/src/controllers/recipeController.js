@@ -3,7 +3,11 @@ import db from '../db/db.js';
 export const getAllRecipes = (req, res) => {
   const stmt = db.prepare('SELECT * FROM recipe');
   const recipes = stmt.all();
-  res.json(recipes);
+
+  if (recipes.length === 0) {
+    return res.status(404).json({ message: 'No recipes found.' });
+  }
+  res.status(200).json(recipes);
 };
 
 export const getRecipeById = (req, res) => {
@@ -19,6 +23,10 @@ export const getRecipeById = (req, res) => {
 
 export const createRecipe = (req, res) => {
   const { name, description, steps, pizzaId, ingredients } = req.body;
+
+  if (!name || !pizzaId || !Array.isArray(ingredients) || ingredients.length === 0) {
+    return res.status(400).json({ error: 'Missing required fields: name, pizzaId, and ingredients are required.' });
+  }
 
   try {
     const insertRecipe = db.prepare(`
@@ -66,5 +74,10 @@ export const updateRecipe = (req, res) => {
 export const deleteRecipe = (req, res) => {
   const stmt = db.prepare('DELETE FROM recipe WHERE id = ?');
   stmt.run(req.params.id);
+
+  if (info.changes === 0) {
+    return res.status(404).json({ message: 'Recipe not found.' });
+  }
+  
   res.status(204).send();
 };
