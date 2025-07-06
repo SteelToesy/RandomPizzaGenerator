@@ -1,13 +1,13 @@
 Upgrades Web Basics
 
-Dingen gedaan:
-
 1. diagrammen gemaakt en toegelicht. 
 
 2. Typo hoofdletter aangepast voor REST principles, en omschrijving toegevoegd. 
 
 3. Status codes toegevoegd voor missende waardes.
 
-4. Data toevoeging veranderd naar een paar grote data array's, en losse insert statements vervangen
+4. Data toevoeging veranderd naar een paar grote data array's, en losse insert statements vervangen.
 
 5. ongebruikte files weggehaald files opgeschoond.
+
+6. delete functie toegevoegd.
