@@ -25,3 +25,15 @@
 .pizza__item button{
     align-self: center;
 }
+
+@media(max-width: 768px){
+    .pizza__listing{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 550px){
+    .pizza__listing{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
