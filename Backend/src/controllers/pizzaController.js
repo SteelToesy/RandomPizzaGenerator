@@ -79,7 +79,7 @@ export const updatePizza = (req, res) => {
 export const deletePizza = (req, res) => {
   const { id } = req.params;
   const deleteStmt = db.prepare('DELETE FROM pizza WHERE id = ?');
-  deleteStmt.run(id);
+  const info = deleteStmt.run(id);
 
   if (info.changes === 0) {
     return res.status(404).json({ message: 'Pizza not found.' });

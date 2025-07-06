@@ -1,11 +1,5 @@
 Upgrades Web Basics
 
-1. Alle AI shit nakijken opnieuw structureren.
-
-11. Geen inputvalidatie en foutafhandeling. 
-
-12. Geen DELETE/PUT geimplementeerd.
-
 Dingen gedaan:
 
 1. diagrammen gemaakt en toegelicht. 
