@@ -58,18 +58,38 @@ export const createRecipe = (req, res) => {
 
 
 export const updateRecipe = (req, res) => {
-  const { pizza_id } = req.body;
+  const { name, description, steps, pizzaId, ingredients } = req.body;
+  const recipeId = req.params.id;
 
-  const updateStmt = db.prepare('UPDATE recipe SET pizza_id = ? WHERE id = ?');
-  const info = updateStmt.run(pizza_id, req.params.id);
+  if (!name || !pizzaId || !Array.isArray(ingredients) || ingredients.length === 0) {
+    return res.status(400).json({ error: 'Missing required fields: name, pizzaId, and ingredients are required.' });
+  }
+
+  const updateStmt = db.prepare('UPDATE recipe SET name = ?, description = ?, steps = ?, pizza_id = ? WHERE id = ?');
+  const info = updateStmt.run(name, description, steps, pizzaId, recipeId);
 
   if (info.changes > 0) {
-    const updatedRecipe = db.prepare('SELECT * FROM recipe WHERE id = ?').get(req.params.id);
+    const deleteIngredientsStmt = db.prepare('DELETE FROM recipe_ingredient WHERE recipe_id = ?');
+    deleteIngredientsStmt.run(recipeId);
+
+    const getIngredientId = db.prepare('SELECT id FROM ingredient WHERE name = ?');
+    const linkIngredient = db.prepare('INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (?, ?)');
+
+    for (const ingredientName of ingredients) {
+      const row = getIngredientId.get(ingredientName);
+      if (row) {
+        linkIngredient.run(recipeId, row.id);
+      }
+    }
+
+    const updatedRecipe = db.prepare('SELECT * FROM recipe WHERE id = ?').get(recipeId);
     res.json(updatedRecipe);
   } else {
     res.status(404).json({ message: 'Recipe not found' });
   }
 };
+
+
 
 export const deleteRecipe = (req, res) => {
   const stmt = db.prepare('DELETE FROM recipe WHERE id = ?');

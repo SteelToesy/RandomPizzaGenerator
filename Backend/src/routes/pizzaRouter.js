@@ -14,7 +14,7 @@ router.get('/summaries', getPizzaSummaries);
 router.get('/', getAllPizzas);
 router.get('/:id', getPizzaById);
 router.post('/', createPizza);
-router.patch('/:id', updatePizza);
+router.put('/:id', updatePizza);
 router.delete('/:id', deletePizza);
 
 export default router;
