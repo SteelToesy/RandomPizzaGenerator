@@ -58,9 +58,9 @@ export const deleteIngredient = (req, res) => {
 export const getIngredientsGroupedByCategory = (req, res) => {
   const rows = db.prepare('SELECT * FROM ingredient').all();
 
-    if (rows.length === 0) {
-      return res.status(404).json({ message: 'No ingredients found.' });
-    }
+  if (rows.length === 0) {
+    return res.status(404).json({ message: 'No ingredients found.' });
+  }
 
   const grouped = rows.reduce((acc, ingredient) => {
     const category = ingredient.category || 'Uncategorized';
@@ -69,7 +69,7 @@ export const getIngredientsGroupedByCategory = (req, res) => {
     }
     acc[category].push(ingredient.name);
     return acc;
-  });
+  }, {});
 
   res.status(200).json(grouped);
 };

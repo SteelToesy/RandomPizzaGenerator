@@ -16,7 +16,6 @@ async function loadFilters() {
     categoryEl.appendChild(title);
 
     const itemList = document.createElement('ul');
-
     items.forEach((name, index) => {
       const itemEl = document.createElement('li');
       itemEl.classList.add('generator__filters-item');
