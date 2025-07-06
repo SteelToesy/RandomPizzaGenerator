@@ -4,10 +4,12 @@ Upgrades Web Basics
 
 2. Typo hoofdletter aangepast voor REST principles, en omschrijving toegevoegd. 
 
-3. Status codes toegevoegd voor missende waardes.
+3. Status codes toegevoegd.
 
 4. Data toevoeging veranderd naar een paar grote data array's, en losse insert statements vervangen.
 
 5. ongebruikte files weggehaald files opgeschoond.
 
-6. delete functie toegevoegd.
+6. delete functie toegevoegd, en PUT verwerkt. Als de naam al bestaat wordt deze vervangen.
+
+7. front end js files opnieuw gedaan en losse files van gemaakt.
